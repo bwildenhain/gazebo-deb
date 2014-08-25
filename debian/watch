@@ -5,4 +5,4 @@
 
 version=3
 
-http://gazebosim.org/downloads.html .*gazebo-(.*)\.tar\.bz2
+http://gazebosim.org/download .*gazebo-(.*)\.tar\.bz2
