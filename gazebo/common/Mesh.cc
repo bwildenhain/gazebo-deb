@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Open Source Robotics Foundation
+ * Copyright (C) 2012-2014 Open Source Robotics Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -257,6 +257,18 @@ const Material *Mesh::GetMaterial(int index) const
     return this->materials[index];
 
   return NULL;
+}
+
+//////////////////////////////////////////////////
+int Mesh::GetMaterialIndex(const Material *_mat) const
+{
+  for (unsigned int i = 0; i < this->materials.size(); ++i)
+  {
+    if (this->materials[i] == _mat)
+      return i;
+  }
+
+  return -1;
 }
 
 //////////////////////////////////////////////////
@@ -730,7 +742,7 @@ unsigned int SubMesh::GetVertexIndex(const math::Vector3 &_v) const
 //////////////////////////////////////////////////
 void SubMesh::FillArrays(float **_vertArr, int **_indArr) const
 {
-  if (this->vertices.size() == 0 || this->indices.size() == 0)
+  if (this->vertices.empty() || this->indices.empty())
     gzerr << "No vertices or indices\n";
 
   std::vector< math::Vector3 >::const_iterator viter;
@@ -906,4 +918,10 @@ void SubMesh::SetName(const std::string &_n)
 std::string SubMesh::GetName() const
 {
   return this->name;
+}
+
+//////////////////////////////////////////////////
+NodeAssignment::NodeAssignment()
+  : vertexIndex(0), nodeIndex(0), weight(0.0)
+{
 }
