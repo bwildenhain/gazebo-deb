@@ -21,6 +21,7 @@ set (sources
 set (headers
   Angle.hh
   Box.hh
+  Filter.hh
   Helpers.hh
   MathTypes.hh
   Matrix3.hh
@@ -58,7 +59,7 @@ gz_build_tests(${gtest_sources})
 set (math_headers "" CACHE INTERNAL "transport headers" FORCE)
 foreach (hdr ${headers})
   APPEND_TO_CACHED_STRING(math_headers
-    "Math Headers" "#include \"math/${hdr}\"\n")
+    "Math Headers" "#include \"gazebo/math/${hdr}\"\n")
 endforeach()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/gzmath.hh.in
                ${CMAKE_CURRENT_BINARY_DIR}/gzmath.hh )
